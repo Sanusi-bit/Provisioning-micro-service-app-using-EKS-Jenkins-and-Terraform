@@ -38,10 +38,6 @@ module "eks" {
     provider_key_arn = module.kms.key_arn
   }
 
-  /*iam_role_additional_policies = {
-    additional= aws_iam_policy.additional.arn
-  }*/
-
   vpc_id = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
   control_plane_subnet_ids = module.vpc.intra_subnets
