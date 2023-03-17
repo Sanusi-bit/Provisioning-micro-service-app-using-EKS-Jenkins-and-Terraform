@@ -1,0 +1,40 @@
+#Voting app deployment using kubernetes
+#database, redis, worker, web
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  labels:
+    app: worker
+spec: 
+  replicas: 2
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers: 
+      - name: worker
+        image: dockersamples/examplevotingapp_worker:latest
+        env:
+        - name: REDIS
+          value: "redis.default.svc.cluster.local"
+        - name: POSTGRES_HOST
+          value: "db.default.svc.cluster.local"
+        - name: POSTGRES_DB
+          value: "postgres"
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_PORT
+          value: "5432"
+      
