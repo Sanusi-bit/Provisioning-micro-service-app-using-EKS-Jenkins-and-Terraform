@@ -147,7 +147,7 @@ module "eks" {
     }
   ]*/
 
-}*/
+}
 
 #VPC
 module "vpc" {
