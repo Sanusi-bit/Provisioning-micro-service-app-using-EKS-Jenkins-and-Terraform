@@ -22,16 +22,16 @@ pipeline {
                 script {
                     dir('kubernetes') {
                         sh "aws eks --region eu-west-2 update-kubeconfig --name sanusibit-eks-cluster"
-                        sh "kubectl apply -f db-deployment.yml"
-                        sh "kubectl apply -f db-service.yml"
-                        sh "kubectl apply -f redis-deployment.yml"
-                        sh "kubectl apply -f redis-service.yml"
-                        sh "kubectl apply -f result-deployment.yml"
-                        sh "kubectl apply -f result-service.yml"
-                        sh "kubectl apply -f vote-deployment.yml"
-                        sh "kubectl apply -f vote-service.yml"
-                        sh "kubectl apply -f worker-deployment.yml"
-                        sh "kubectl apply -f secrets.yml"
+                        sh "kubectl apply -f db-deployment.yml --namespace voting-app"
+                        sh "kubectl apply -f db-service.yml --namespace voting-app"
+                        sh "kubectl apply -f redis-deployment.yml --namespace voting-app"
+                        sh "kubectl apply -f redis-service.yml --namespace voting-app"
+                        sh "kubectl apply -f result-deployment.yml --namespace voting-app"
+                        sh "kubectl apply -f result-service.yml --namespace voting-app"
+                        sh "kubectl apply -f vote-deployment.yml --namespace voting-app"
+                        sh "kubectl apply -f vote-service.yml --namespace voting-app"
+                        sh "kubectl apply -f worker-deployment.yml --namespace voting-app"
+                        sh "kubectl apply -f secrets.yml --namespace voting-app"
                     }
                 }
             }
@@ -41,7 +41,7 @@ pipeline {
                 script {
                     dir('kubernetes') {
                         sh "kubectl create namespace sock-shop"
-                        sh "kubectl apply -f complete-demo.yaml"
+                        sh "kubectl apply -f complete-demo.yaml --namespace sock-shop"
                     }
                 }
             }
