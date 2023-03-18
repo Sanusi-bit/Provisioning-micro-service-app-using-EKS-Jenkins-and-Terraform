@@ -14,11 +14,11 @@ provider "aws" {
 }
 
 data "aws_eks_cluster" "default" {
-  name = module.eks.cluster_id
+  name = local.name
 }
 
 data "aws_eks_cluster_auth" "default" {
-  name = module.eks.cluster_id
+  name = local.name
 }
 
 provider "kubernetes" {
