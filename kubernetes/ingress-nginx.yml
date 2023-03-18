@@ -5,8 +5,8 @@ kind: Ingress
 metadata:
   name: voting-app-ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/use-regex: "true"
+    #nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    #nginx.ingress.kubernetes.io/use-regex: "true"
     alb.ingress.kubernetes.io/scheme: internet-facing
     kubernetes.io/ingress.class: alb
 spec:
