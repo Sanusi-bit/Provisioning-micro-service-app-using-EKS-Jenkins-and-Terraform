@@ -113,11 +113,11 @@ module "eks" {
     }
   }
 
-  /*manage_aws_auth_configmap =  true
+  manage_aws_auth_configmap =  true
 
-  aws_auth_node_iam_role_arns_non_windows = [
+  /*aws_auth_node_iam_role_arns_non_windows = [
     module.eks.eks_managed_node_groups.iam_role_arn,
-  ]
+  ]*/
 
   aws_auth_roles = [
     {
@@ -145,7 +145,7 @@ module "eks" {
         account_id = data.aws_caller_identity.current.account_id
         role_name = "admin"
     }
-  ]*/
+  ]
 
 }
 
@@ -214,6 +214,22 @@ resource "aws_iam_policy" "sanusibit" {
     ]
   })
 }
+
+resource "aws_iam_policy" "worker_policy" {
+  name        = "worker-policy"
+  description = "Worker policy for the ALB Ingress"
+
+  policy = file("iam-policy.json")
+}
+
+resource "aws_iam_role_policy_attachment" "additional" {
+  for_each = module.eks.eks_managed_node_groups
+
+  policy_arn = aws_iam_policy.worker_policy.arn
+  role       = each.value.iam_role_name
+
+}
+
 
 module "kms" {
   source = "terraform-aws-modules/kms/aws"
