@@ -26,3 +26,14 @@ resource "helm_release" "ingress" {
   }
   
 }
+
+data "kubernetes_service" "ingress" {
+
+  metadata {
+    name      = "ingress"
+    namespace = "default"
+  }
+  depends_on = [
+    helm_release.ingress
+  ]
+}
