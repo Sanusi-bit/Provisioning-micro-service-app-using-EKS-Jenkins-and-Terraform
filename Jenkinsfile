@@ -22,6 +22,7 @@ pipeline {
                 script {
                     dir('kubernetes') {
                         sh "aws eks --region eu-west-2 update-kubeconfig --name sanusibit-eks-cluster"
+                        sh "kubectl apply -f ingress-nginx.yml"
                         sh "kubectl apply -f db-deployment.yml"
                         sh "kubectl apply -f db-service.yml"
                         sh "kubectl apply -f redis-deployment.yml"
