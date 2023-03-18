@@ -24,10 +24,6 @@ resource "helm_release" "ingress" {
     name  = "clusterName"
     value = local.name
   }
-  set {
-    name  = "service.type"
-    value = "LoadBalancer"
-  }
 }
 
 data "kubernetes_service" "ingress" {
