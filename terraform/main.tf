@@ -166,12 +166,18 @@ module "vpc" {
   enable_dns_hostnames =    true
 
   enable_flow_log = false
+
+  tags = {
+    "kubernetes.io/cluster/sanusibit-eks-cluster" = "shared"
+  }
   
   public_subnet_tags = {
+    "kubernetes.io/cluster/sanusibit-eks-cluster" = "shared"
     "kubernetes.io/role/elb" = "1"
   }
 
   private_subnet_tags = {
+    "kubernetes.io/cluster/sanusibit-eks-cluster" = "shared"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }
