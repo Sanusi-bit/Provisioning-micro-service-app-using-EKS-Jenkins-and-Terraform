@@ -22,7 +22,7 @@ pipeline {
                 script {
                     dir('kubernetes') {
                         sh "aws eks --region eu-west-2 update-kubeconfig --name sanusibit-eks-cluster"
-                        sh "kubectl create namespace voting-app"
+                        /*sh "kubectl create namespace voting-app"*/
                         sh "kubectl apply -f db-deployment.yml --namespace voting-app"
                         sh "kubectl apply -f db-service.yml --namespace voting-app"
                         sh "kubectl apply -f redis-deployment.yml --namespace voting-app"
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     dir('kubernetes') {
-                        sh "kubectl create namespace sock-shop"
+                        /*sh "kubectl create namespace sock-shop"*/
                         sh "kubectl apply -f complete-demo.yaml --namespace sock-shop"
                     }
                 }
