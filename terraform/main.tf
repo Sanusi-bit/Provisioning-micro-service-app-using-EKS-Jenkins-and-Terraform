@@ -88,16 +88,16 @@ module "eks" {
   eks_managed_node_groups = {
     node1 = {
         min_size = 1
-        max_size = 6
-        desired_size = 5
+        max_size = 10
+        desired_size = 9
         instance_types = ["t3.medium"]
         dsik_size = 20
     }
 
     node2 = {
         min_size = 1
-        max_size = 5
-        desired_size = 4
+        max_size = 9
+        desired_size = 8
         instance_types = ["t2.medium"]
         dsik_size = 20
         labels = {
