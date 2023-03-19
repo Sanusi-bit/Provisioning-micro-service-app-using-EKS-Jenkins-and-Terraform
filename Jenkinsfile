@@ -37,15 +37,15 @@ pipeline {
                 }
             }
         }
-        stage("Deploy sock shop to EKS Cluster") {
+        /*stage("Deploy sock shop to EKS Cluster") {
             steps {
                 script {
                     dir('kubernetes') {
-                        /*sh "kubectl create namespace sock-shop"*/
+                        /*sh "kubectl create namespace sock-shop"
                         sh "kubectl apply -f complete-demo.yaml --namespace sock-shop"
                     }
                 }
             }
-        }
+        }*/
     }
 }
