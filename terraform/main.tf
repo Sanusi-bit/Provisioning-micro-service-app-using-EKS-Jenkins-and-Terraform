@@ -96,8 +96,8 @@ module "eks" {
 
     node2 = {
         min_size = 1
-        max_size = 14
-        desired_size = 13
+        max_size = 11
+        desired_size = 10
         instance_types = ["t2.medium"]
         dsik_size = 20
         labels = {
