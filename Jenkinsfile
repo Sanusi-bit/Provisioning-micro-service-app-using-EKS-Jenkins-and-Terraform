@@ -32,7 +32,6 @@ pipeline {
                         sh "kubectl apply -f vote-deployment.yml --namespace voting-app"
                         sh "kubectl apply -f vote-service.yml --namespace voting-app"
                         sh "kubectl apply -f worker-deployment.yml --namespace voting-app"
-                        sh "kubectl apply -f secrets.yml --namespace voting-app"
                     }
                 }
             }
