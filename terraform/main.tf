@@ -98,7 +98,7 @@ module "eks" {
         min_size = 1
         max_size = 14
         desired_size = 13
-        instance_types = ["t2.medium"]
+        instance_types = ["t3.medium"]
         dsik_size = 20
         labels = {
             Environment = "test"
