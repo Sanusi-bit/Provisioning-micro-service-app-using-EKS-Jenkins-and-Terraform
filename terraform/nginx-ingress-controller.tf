@@ -25,13 +25,13 @@ resource "helm_release" "nginx-ingress-controller" {
   }
 }
 
-data "kubernetes_service" "ingress" {
+data "kubernetes_service" "nginx-ingress-controller" {
 
   metadata {
     name      = "nginx-ingress-controller"
     namespace = "voting-app"
   }
   depends_on = [
-    helm_release.ingress
+    helm_release.nginx-ingress-controller
   ]
 }
