@@ -18,13 +18,13 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: result
+            name: result-service
             port:
               number: 80
       - path: "/vote"
         pathType: Prefix
         backend:
           service:
-            name: vote
+            name: vote-service
             port:
               number: 80
