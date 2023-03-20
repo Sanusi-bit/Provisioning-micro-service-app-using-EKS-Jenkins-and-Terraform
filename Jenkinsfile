@@ -47,7 +47,7 @@ pipeline {
                 }
             }
         }
-        stage("Deploy sock shop to EKS Cluster") {
+        stage("Setting up Monitoring and logging") {
             steps {
                 script {
                     dir('manifests-monitoring') {
