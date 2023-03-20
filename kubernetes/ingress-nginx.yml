@@ -1,0 +1,29 @@
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: voting-app-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: result
+            port:
+              number: 5001
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vote
+            port:
+              number: 5000
