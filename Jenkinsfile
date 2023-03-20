@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     dir('kubernetes') {
-                        sh "kubectl create namespace sock-shop"
+                        /*sh "kubectl create namespace sock-shop*/"
                         sh "kubectl apply -f complete-demo.yaml --namespace sock-shop"
                     }
                 }
@@ -50,7 +50,7 @@ pipeline {
         stage("Deploy sock shop to EKS Cluster") {
             steps {
                 script {
-                    dir('kubernetes') {
+                    dir('manifests-monitoring') {
                         sh "kubectl apply -f 00-monitoring-ns.yaml"
                         sh "kubectl apply -f 01-prometheus-sa.yaml"
                         sh "kubectl apply -f 02-prometheus-cr.yaml"
