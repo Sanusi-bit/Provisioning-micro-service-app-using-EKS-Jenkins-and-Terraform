@@ -6,11 +6,10 @@ provider "helm" {
     }
 }
 
-resource "helm_release" "ingress" {
-  name       = "ingress"
-  chart      = "aws-load-balancer-controller"
-  repository = "https://aws.github.io/eks-charts"
-  version    = "1.4.6"
+resource "helm_release" "nginx-ingress-controller" {
+  name       = "nginx-ingress-controller"
+  chart      = "nginx-ingress-controller"
+  repository = "https://charts.bitnami.com/bitnami"
 
   set {
     name  = "autoDiscoverAwsRegion"
@@ -21,10 +20,6 @@ resource "helm_release" "ingress" {
     value = "true"
   }
   set {
-    name  = "clusterName"
-    value = local.name
-  }
-  set {
     name = "service.type"
     value = "LoadBalancer"
   }
@@ -33,8 +28,8 @@ resource "helm_release" "ingress" {
 data "kubernetes_service" "ingress" {
 
   metadata {
-    name      = "ingress"
-    namespace = "default"
+    name      = "nginx-ingress-controller"
+    namespace = "voting-app"
   }
   depends_on = [
     helm_release.ingress
